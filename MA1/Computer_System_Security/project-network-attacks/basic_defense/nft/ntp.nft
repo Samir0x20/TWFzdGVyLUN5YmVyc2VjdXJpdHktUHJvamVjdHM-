@@ -1,0 +1,18 @@
+#!/usr/sbin/nft -f
+
+flush ruleset
+
+table ip ntp_server_filter {
+
+
+    chain input {
+        type filter hook input priority 0;
+    }
+
+
+    chain output {
+        type filter hook output priority 0;
+        ct state established,related accept
+		ct state new drop
+    }
+}

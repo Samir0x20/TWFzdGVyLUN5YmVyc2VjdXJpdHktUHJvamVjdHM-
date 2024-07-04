@@ -1,0 +1,1 @@
+internet sudo python ssh.py
