@@ -1,0 +1,158 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  role          String          @default("user")
+  emailVerified DateTime?
+  image         String?
+  masterPasswordHash     String?
+  publicKeyAuth              String?
+  encryptedPrivateKeyAuth    String?  // Encrypted private key for authenticator (iv + encrypted key)
+  publicKeyEnc               String?
+  encryptedPrivateKeyEnc     String?  // Encrypted private key for encryption (iv + encrypted key)
+  twoFactorEnabled           Boolean  @default(false)
+  twoFactorSecret            String?  // TOTP secret for 2FA
+
+  accounts      Account[]
+  sessions      Session[]
+  Authenticator Authenticator[]
+  videos        Video[]
+  VideoAccessKey VideoAccessKey[]
+  Challenge Challenge[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EmailVerification {
+  id          Int         @id @default(autoincrement())
+  email       String
+  token       String      @unique
+  createdAt   DateTime    @default(now())
+  expiresAt   DateTime
+}
+
+model Challenge {
+  id          Int      @id @default(autoincrement())
+  userId      String
+  challenge   String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([userId, challenge])
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken    String   @unique
+  userId          String
+  expires         DateTime
+  session2FA      Boolean @default(false)
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+model Video {
+  id          Int      @id @default(autoincrement()) // Auto-incrementing primary key
+  dateStarted DateTime // Timestamp when the video recording started
+  ownerId     String // Related user ID
+  owner       User     @relation(fields: [ownerId], references: [id])
+  code        String // Video code (e.g., for sharing or linking)
+  chunkCount  Int      @default(0)
+
+  videoAccessKey VideoAccessKey[]
+}
+
+model VideoAccessKey {
+  id          Int      @id @default(autoincrement())
+  videoId     Int
+  recipientId String    // Related user ID for whom this key is encrypted
+  key         String    // Encrypted session key as a base64 string
+  createdAt   DateTime @default(now())
+  
+  video       Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  // TODO maybe add trusted user table ?
+  recipient   User     @relation(fields: [recipientId], references: [id], onDelete: Cascade)
+}
+
+model Metadata {
+  id            Int      @id @default(autoincrement())
+  timestamp     DateTime // When the data/request was sent
+  dataSize      Int // Size of the data/request in bytes
+  privileges    String? // Required privileges for the request (optional)
+  resourceDepth Int? // Tree depth of the required resource (optional)
+
+  // Additional fields for anomaly detection
+  requestType   String // Type of request (e.g., GET, POST, PUT, DELETE)
+  clientIp      String // IP address of the client
+  responseTime  Int? // Time taken to process the request (in ms)
+  endpoint      String // API endpoint that was accessed
+  userAgent     String // Client's user agent
+  requestStatus String // Success/Failure/Pending
+  payloadSize   Int?   @default(0) // Size of the payload in bytes
+
+  // Location is kept from original schema as it might be useful for anomaly detection
+  location String
+
+  // System-level metadata
+  processingServer String // Server that processed the request
+  loadAverage      Float? // Server load at time of request
+  memoryUsage      Float? // Server memory usage at time of request
+}
