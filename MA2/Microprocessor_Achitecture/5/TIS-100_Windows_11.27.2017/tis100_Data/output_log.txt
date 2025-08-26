@@ -1,0 +1,46 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce RTX 3050 6GB Laptop GPU (ID=0x25ac)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.dll (this message is harmless)
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.West.dll (this message is harmless)
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.CJK.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.CJK.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.MidEast.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.MidEast.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.Other.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.Other.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.Rare.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.Rare.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.West.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\I18N.West.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\Ionic.Zip.Reduced.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\Ionic.Zip.Reduced.dll into Unity Child Domain
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\MoonSharp.Interpreter.dll (this message is harmless)
+Loading C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\MoonSharp.Interpreter.dll into Unity Child Domain
+- Completed reload, in  1.711 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 144Hz; virtual: 1920x1080 at 0,0
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\Azmar\Documents\academic-year-2024-2025\Q2_Microprocessor_architecture\labs\5\TIS-100_Windows_11.27.2017\tis100_Data\Managed\Mono.Security.dll (this message is harmless)

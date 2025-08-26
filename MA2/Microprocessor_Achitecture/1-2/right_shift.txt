@@ -1,0 +1,25 @@
+
+
+        movi    1,0xfff0
+        addi    2,0,2
+        addi    3,0,1
+        addi    4,0,15
+
+loop:   beq     4,0,end
+        addi    4,4,-1
+        nand    5,1,2
+        nand    5,5,5
+
+        beq     5,2,rshift
+        add     3,3,3
+        add     2,2,2
+        beq     0,0,loop
+
+rshift: add     6,6,3
+        add     3,3,3
+        add     2,2,2
+        beq     0,0,loop
+
+
+
+end:    halt

@@ -1,0 +1,14 @@
+When looking at the product A panel.
+Get the product B that was present the most 
+in every checkout at the same time of product A.
+Like a pair of products <A, B>.
+
+
+
+Get the most purchased product in a week.
+
+
+curl admin:admin@0.0.0.0:3012/purchase-based/_design/queries/_view/most_co_purchased?group=true
+
+
+curl -X GET http://0.0.0.0:3007/api/v1/recommendation -H "Authorization: Bearer "

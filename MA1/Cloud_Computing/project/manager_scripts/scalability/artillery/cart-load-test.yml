@@ -1,0 +1,29 @@
+config:
+  target: "http://dummy-target"  # Dummy target to satisfy Artillery
+  phases:
+    - duration: 10  # Duration for the login phase, where only one virtual user will perform the login
+      arrivalRate: 1  # Only one virtual user for login
+    - duration: 60  # Duration for the cart phase, where multiple virtual users will perform cart requests
+      arrivalRate: 1000  # Number of virtual users for cart requests
+  defaults:
+    headers:
+      content-type: "application/json"
+
+scenarios:
+  - name: "Login scenario"
+    flow:
+      - post:
+          url: "http://scapp_users-service/login" 
+          json:
+            username: "admin"
+            password: "admin"
+          capture:
+            - json: "$.token"
+              as: "authToken"
+
+  - name: "Cart scenario"
+    flow:
+      - get:
+          url: "http://scapp_cart-service/cart/admin"  # Correctly indented
+          headers:
+            Authorization: "Bearer {{ authToken }}"

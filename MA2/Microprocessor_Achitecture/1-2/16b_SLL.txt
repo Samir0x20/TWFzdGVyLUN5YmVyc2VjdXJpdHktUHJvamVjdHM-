@@ -1,0 +1,3 @@
+movi    5,5 // move the value 5 in the registry 5
+add     5,5,5 //Shift R5 left by 1 (R5 = R5 * 2)
+halt // stop the execution

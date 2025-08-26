@@ -1,0 +1,26 @@
+- Special IS[1] 17-bit instruction set:
+    Execution:
+        Next PC: 49
+        Instructions: 570
+    Pipelines Statistics:
+        CPI: 1.45
+        RAW Stall: 0
+        Branch Stall: 126
+        Speedup: 3.45
+        Speedup (clock):0.99
+
+- Special IS[2]
+    Execution:
+        Next PC: 9
+        Instructions: 9
+    Pipelines Statistics:
+        CPI: 1.44
+        RAW Stall: 0
+        Branch Stall: 0
+        Speedup: 3.46
+        Speedup (clock):0.99
+
+
+In conclusion, using the Special IS[2] ends up to be faster in time (writing the code and execution) 
+and CPI than implementing multiplication with the Special IS[1] 17-bit instruction set 
+because MUL is implemented in the hardware thus reducing the clock cycle and the number of instructions.

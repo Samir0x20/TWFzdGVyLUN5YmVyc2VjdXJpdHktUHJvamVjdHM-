@@ -1,0 +1,24 @@
+//Question 2.2: Write the code for your operator using the Special IS[1] 17-bit.
+//We choose operator A ≤ B
+
+//R1 contains the value of A
+//R2 contains the value of B
+//R3 contains the return value
+
+            //Number A		
+            movi    1,0x7fff	
+            
+            //Number B
+            movi    2,0x7ff1	
+            
+            beq     1,2,true            //If A is equal to B, return true
+            bl      1,2,true            //If A is lower than B, return true
+            beq     0,0,false           //Else return false
+
+true:       addi    3,0,1
+            beq     0,0,end
+
+false:      addi    3,0,0
+            beq     0,0,end
+
+end:        halt

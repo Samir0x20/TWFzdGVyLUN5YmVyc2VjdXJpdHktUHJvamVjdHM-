@@ -1,0 +1,20 @@
+config:
+  target: "http://dummy-target"  # Dummy target to satisfy Artillery
+  phases:
+    - duration: 60  # Duration for the product phase, runs for multiple virtual users
+      arrivalRate: 1000  # number of virtual users for product requests
+  defaults:
+    headers:
+      content-type: "application/json"
+
+scenarios:
+  - name: "Logs scenario"
+    flow:
+      - post:
+          url: "http://scapp_logs-service/logs/microservice/login"  
+          json:
+            username: "admin"
+            password: "admin"
+          capture:
+            - json: "$.token"
+              as: "authToken"

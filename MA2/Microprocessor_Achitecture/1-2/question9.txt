@@ -1,0 +1,98 @@
+//Question 9:
+// Write a program which multiplies the (unsigned)
+// content of reg1 and reg2 and
+// writes the result into reg4(MSB), reg3.
+
+//We wrote this code based on the famous binary multiplication. (https://www.cuemath.com/numbers/binary-multiplication/)
+
+//The code passed all tests on http://212.227.160.152:8000/  (We sent screenshots to Mr Ladner Navid to showcase different performance.)
+
+//R1 = loop value
+//R2 = Multiplier B
+//R3 = LSB result
+//R4 = MSB result
+//R5 = mask
+//R6 = LSB of left shit
+//R7 = MSB of the left shit
+
+//mem[0] = Save the current counter
+//mem[1] = Save the current mask
+//mem[2] = Save the Multiplier B
+
+                
+                movi    1,0xffff        //Multiplicant A
+                movi    2,0xffff        //Multiplier B
+                add     6,0,1           //Move A to R6
+                addi    5,0,1           //R5: mask to know if the nth bit is 1 or 0 
+                addi    1,0,16          //value for the loop
+
+
+loop:           beq     1,0,end
+                addi    1,1,-1
+
+                sw      1,0,0           //Save the counter in mem[0]
+
+                //Extract the nth bit
+                nand    1,5,2
+                nand    1,1,1
+
+                beq     1,0,lshift      //Perform left shifting if the nth bit in B(Multiplier) is 1
+                beq     0,0,resultcarry
+
+lshift:         add     7,7,7
+
+                sw      5,0,1           //Save mask value in mem[1]
+                lui     5,512           //R5: mask to extract MSB
+
+                nand    1,5,6   
+                nand    1,1,1
+
+                lw      5,0,1           
+
+                add     6,6,6
+                beq     1,0,setup       
+
+                addi    7,7,1
+                beq     0,0,setup
+
+resultcarry:    sw      5,0,1           //Save mask in mem[1]
+                sw      2,0,2           //Save B(Multiplier) in mem[2]
+
+                lui     5,512           //R5: mask to extract MSB
+
+                nand    1,5,3           //Extract the MSB of R3 and store it in R1  
+                nand    2,5,6           //Extract the MSB of R6 and store it in R2
+           
+
+                add     3,3,6           
+                add     4,4,7
+
+                beq     1,2,equalmsb    //Check if MSBs of terms are equal
+
+                // Extract the MSB of Sum
+                nand    1,5,3             
+                nand    1,1,1 
+                
+                beq     1,0,carry       //If MSB of result is 0, a carry happened            
+                beq     0,0,carrysetup 
+
+
+equalmsb:       nand    1,1,1
+                beq     1,5,carry       //If MSBs terms are 1, a carry happened
+                beq     0,0,carrysetup
+
+carry:          addi    4,4,1 
+                beq     0,0,carrysetup         
+
+//Setup before returning to loop
+setup:          lw      1,0,0           //Load the counter
+                add     5,5,5           //Go to the next mask: 1, 2, 4, 8, 16, ...
+                beq     0,0,loop
+
+//Set the right values for R5 and R2 before performing a left shifting
+carrysetup:     lw      5,0,1           //Load Mask value
+                lw      2,0,2           //Load B(Multiplier) 
+                beq     0,0,lshift
+
+
+end:            halt

@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1744020075 source:c:\users\azmar\documents\academic-year-2024-2025\q2_microprocessor_architecture\labs\6\simd\c_image_processing.c
+	"C_image_processing.h"
+	<string.h>
+
+1744017004 c:\users\azmar\documents\academic-year-2024-2025\q2_microprocessor_architecture\labs\6\simd\c_image_processing.h
+	<stdlib.h>
+	<stdio.h>
+
+1744452056 source:c:\users\azmar\documents\academic-year-2024-2025\q2_microprocessor_architecture\labs\6\simd\main.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<unistd.h>
+	<windows.h>
+
+1744015426 source:c:\users\azmar\documents\academic-year-2024-2025\q2_microprocessor_architecture\labs\6\simd\asm_image_processing.c
+
+1744450189 source:c:\users\azmar\documents\academic-year-2024-2025\q2_microprocessor_architecture\labs\6\simd\main2.c
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<unistd.h>
+	<windows.h>
+

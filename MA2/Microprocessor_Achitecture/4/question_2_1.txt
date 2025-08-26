@@ -1,0 +1,73 @@
+//Question 2.1: Write the code for your operator using the original 8 instructions.
+//We choose operator A ≤ B
+
+//R1 contains the value of A
+//R2 contains the value of B
+//R3 contains the return value
+
+					
+					//Number A
+					movi 	1,-32768
+
+					//Number B
+					movi 	2,-32768
+					
+					movi 	4,0x4000			//R4: Mask of 2nd MSB
+					movi 	7,0x8000			//R7: MasK of 1st MSB, indicates if the number is positive or negative
+					
+					add 	5,0,1				//Move A to R5
+					add 	6,0,2				//Move B to R6
+					
+					beq 	1,2,true			//If A is equal to B, return true
+					beq 	0,0,checksign	
+
+looppositive:		nand 	5,4,1
+					nand 	5,5,5
+
+					nand 	6,4,2
+					nand 	6,6,6
+					
+					beq 	5,6,leftshift		//If MSB of A and B are equal then perform left shift
+					beq 	5,4,false			//If A is greater than B, return false
+					beq 	6,4,true			//If A is smaller than B, return true
+					beq 	0,0,looppositive
+					
+loopnegative:		nand 	5,4,1
+					nand 	5,5,5
+
+					nand 	6,4,2
+					nand 	6,6,6
+					
+					beq 	5,6,leftshift		//If MSB of A and B are equal then perform left shift
+					beq 	5,4,true			//If -A is smaller than -B, return false
+					beq 	6,4,false			//If -A is greater than -B, return true
+					beq 	0,0,loopnegative
+
+true:				addi 	3,0,1
+					nop
+					halt
+
+false:				addi	3,0,0
+					nop
+					halt
+
+leftshift:			add 	1,1,1
+					add 	2,2,2
+					beq 	3,7,loopnegative
+					beq		3,7,looppositive
+
+//If A or B is a negative number then the other number is greater
+checksign:			nand 	5,7,1
+					nand 	5,5,5
+
+					nand 	6,7,2
+					nand 	6,6,6
+
+					beq 	5,6,chooseloop
+					beq 	5,7,true
+					beq 	6,7,false
+
+chooseloop:			add 	3,0,5
+					beq		5,7,loopnegative
+					beq		0,0,looppositive
+		

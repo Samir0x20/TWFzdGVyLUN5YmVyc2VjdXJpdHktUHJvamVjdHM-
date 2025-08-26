@@ -1,0 +1,15 @@
+        movi    5,0xffff    //Load R5 with 0xFFFF (initial value for LSB)
+        movi    6,0x0001    //Load R6 with 0x0001 (initial value for MSB)
+        movi    4,0x8000    //Load R4 with 0x8000 (mask for MSB)
+        nand    2,5,4
+        nand    2,2,2
+        beq     2,0,nocarry //If R2 == 0 then branch to nocarry
+        movi    2,1         //Load R2 with 1. R2 contains the carry
+        add     5,5,5       //Perform left shifting on R5
+        add     6,6,6       //Perform left shifting on R6
+        add     6,6,2       //Add the carry on R6
+        halt
+nocarry:
+        add     5,5,5       //Perform left shifting on R5
+        add     6,6,6       //Perform left shifting on R6
+        halt

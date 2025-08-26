@@ -1,0 +1,267 @@
+version: "3"
+services:
+  # Frontend service
+  frontend:
+    image: privacy13/scapp-frontend:latest
+    environment:
+      - PUBLIC_API_GATEWAY_URL=http://api-gateway:3007/api/v1 #change api-gateway to the IP of the manager node
+    ports:
+      - "3000:3000"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Users database
+  users-db:
+    image: privacy13/kv-storage-system:latest
+    ports:
+      - "3001:5984"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Users service
+  users-service:
+    image: privacy13/scapp-users:latest
+    depends_on:
+      - users-db
+    environment:
+      - LOGGING_SERVICE_URL=http://logs-service:80
+    ports:
+      - "3002:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Cart database
+  cart-db:
+    image: privacy13/kv-storage-system:latest
+    ports:
+      - "3003:5984"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Cart service
+  cart-service:
+    image: privacy13/scapp-cart:latest
+    depends_on:
+      - cart-db
+    environment:
+      - LOGGING_SERVICE_URL=http://logs-service:80
+      - AUTH_SERVICE_URL=http://users-service:80
+    ports:
+      - "3004:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Checkout database
+  checkout-db:
+    image: privacy13/kv-storage-system:latest
+    ports:
+      - "3005:5984"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Checkout service
+  checkout-service:
+    image: privacy13/scapp-checkout:latest
+    depends_on:
+      - checkout-db
+    environment:
+      - LOGGING_SERVICE_URL=http://logs-service:80
+      - AUTH_SERVICE_URL=http://users-service:80
+    ports:
+      - "3006:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # API Gateway
+  api-gateway:
+    image: privacy13/api-gateway:latest
+    environment:
+      - USERS_SERVICE_URL=http://users-service:80
+      - CART_SERVICE_URL=http://cart-service:80
+      - CHECKOUT_SERVICE_URL=http://checkout-service:80
+      - PRODUCTS_SERVICE_URL=http://products-service:80
+      - RECOMMENDATION_SERVICE_URL=http://recommendation-service:80
+    ports:
+      - "3007:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Products database
+  products-db:
+    image: privacy13/kv-storage-system:latest
+    ports:
+      - "3008:5984"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Products service
+  products-service:
+    image: privacy13/scapp-product:latest
+    depends_on:
+      - products-db
+    environment:
+      - LOGGING_SERVICE_URL=http://logs-service:80
+      - AUTH_SERVICE_URL=http://users-service:80
+      - ACCOUNT_STRING=${ACCOUNT_STRING}
+      - CONTAINER_NAME=${CONTAINER_NAME}
+    ports:
+      - "3009:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Logs database
+  logs-db:
+    image: privacy13/kv-storage-system:latest
+    ports:
+      - "3010:5984"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Logs service
+  logs-service:
+    image: privacy13/logs-service:latest
+    depends_on:
+      - logs-db
+    environment:
+      - RECOMMENDATION_SERVICE_URL=http://recommendation-service:80
+    ports:
+      - "3011:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # recommendation database
+  recommendation-db:
+    image: privacy13/kv-storage-system:latest
+    ports:
+      - "3012:5984"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # recommendation service
+  recommendation-service:
+    image: privacy13/scapp-recommendation:latest
+    depends_on:
+      - recommendation-db
+    environment:
+      - LOGGING_SERVICE_URL=http://logs-service:80
+      - AUTH_SERVICE_URL=http://users-service:80
+    ports:
+      - "3013:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role != manager  # Avoid running on manager nodes
+    networks:
+      - scapp-net
+
+  # Docker GUI for swarms
+  visualizer:
+    image: dockersamples/visualizer:latest
+    ports:
+      - "80:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager  # Run only on manager nodes
+    networks:
+      - scapp-net
+
+networks:
+  scapp-net:
+    external: true

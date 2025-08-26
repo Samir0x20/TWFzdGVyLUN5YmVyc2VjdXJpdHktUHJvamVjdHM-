@@ -1,0 +1,22 @@
+Question 1: Determine a set of test vectors which could test the functionality and corner cases of your operator. 
+Justify all vectors utility. We target signed numbers
+
+For the operator ≤, we tested:
+
+Test Case | Operand A | Operand B | Expected Result (A ≤ B)  | Justification
+-----------------------------------------------------------------------------------
+1         |  5        |  5        | True                     | Ensures that equality case is correctly handled.
+2         | -5        | -5        | True                     | Checks equality for negative values.
+3         |  3        |  7        | True                     | Verifies standard comparison between positive values.
+4         |  8        |  2        | False                    | Ensures correct handling when A > B.
+5         | -7        | -3        | True                     | Ensures correct handling of negative numbers (negative is smaller).
+6         | -2        | -6        | False                    | Verifies correct ordering of negative numbers.
+7         | -4        |  6        | True                     | Tests case where negative is compared to positive.
+8         |  4        | -2        | False                    | Ensures correct behavior when positive is compared to negative.
+9         |  0        |  5        | True                     | Tests edge case where zero is compared to a positive number.
+10        |  0        | -3        | False                    | Verifies that zero is greater than negative values.
+11        | -5        |  0        | True                     | Ensures negative values are considered less than zero.
+12        |  32768    | -32768    | False                    | Validates handling of extreme integer values.
+13        | -32768    |  32768    | True                     | Checks handling of extreme opposite values.
+14        |  32768    |  32768    | True                     | Ensures correct handling when both operands are at their maximum.
+15        | -32768    | -32768    | True                     | Verifies behavior at minimum bounds.

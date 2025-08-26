@@ -1,0 +1,11 @@
+    movi  1,5       // Move the value 0xFF52 into R1
+    movi  2,0x8000  // Load 0x8000 (MSB mask) into R2
+    nand  4,1,2     // Perform NAND on R1 and R2
+    nand  4,4,4     // NOT operation: Now R4 contains (R1 AND R2)
+    beq   4,0,msb0  // If (R1 AND 0x8000) == 0, jump to msb0
+    addi  7,0,1     // MSB is 1 → Set R7 to 1
+    halt
+
+msb0:
+    addi  7,0,0     // MSB is 0 → Set R7 to 0
+    halt

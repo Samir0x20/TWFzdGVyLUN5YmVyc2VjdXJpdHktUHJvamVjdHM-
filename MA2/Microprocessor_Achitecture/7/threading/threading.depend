@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1744881601 source:c:\users\azmar\documents\academic-year-2024-2025\q2_microprocessor_architecture\labs\7\threading\main.c
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<assert.h>
+	<immintrin.h>
+	<time.h>
+	<unistd.h>
+

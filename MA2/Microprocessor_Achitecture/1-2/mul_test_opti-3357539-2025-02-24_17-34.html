@@ -1,0 +1,117 @@
+<!DOCTYPE HTML >
+        <link rel="shortcut icon" href="/static/favicon.ico">
+	<html>
+	<head>	
+  
+  
+	<title>Downloaded log</title>
+  
+  
+</head>
+	
+	
+		
+	
+<body>
+
+  
+	<h1>mul_test_opti-3357539-2025-02-24_17-34.log</h1>
+  
+  
+  <meta http-equiv="Cache-Control" content="no-cache">
+  
+	<pre><code>
+@0x0000 :           : lui  1,1023
+@0x0001 :           : addi 1,1,63
+@0x0002 :           : lui  2,1023
+@0x0003 :           : addi 2,2,63
+@0x0004 :           : add     6,0,1
+@0x0005 :           : addi    5,0,1
+@0x0006 :           : addi    1,0,16
+label : loop @0x0007
+@0x0007 : loop      : beq     1,0,end
+@0x0008 :           : addi    1,1,-1
+@0x0009 :           : sw      1,0,0
+@0x000a :           : nand    1,5,2
+@0x000b :           : nand    1,1,1
+@0x000c :           : beq     1,0,lshift
+@0x000d :           : beq     0,0,resultcarry
+label : lshift @0x000e
+@0x000e : lshift    : add     7,7,7
+@0x000f :           : sw      5,0,1
+@0x0010 :           : lui  5,512
+@0x0011 :           : addi 5,5,0
+@0x0012 :           : nand    1,5,6
+@0x0013 :           : nand    1,1,1
+@0x0014 :           : lw      5,0,1
+@0x0015 :           : add     6,6,6
+@0x0016 :           : beq     1,0,setup
+@0x0017 :           : addi    7,7,1
+@0x0018 :           : beq     0,0,setup
+label : resultcarry @0x0019
+@0x0019 : resultcarry: sw      5,0,1
+@0x001a :           : sw      2,0,2
+@0x001b :           : lui  5,512
+@0x001c :           : addi 5,5,0
+@0x001d :           : nand    1,5,3
+@0x001e :           : nand    1,1,1
+@0x001f :           : nand    2,5,6
+@0x0020 :           : nand    2,2,2
+@0x0021 :           : add     3,3,6
+@0x0022 :           : add     4,4,7
+@0x0023 :           : beq     1,2,equalmsb
+@0x0024 :           : nand    1,5,3
+@0x0025 :           : nand    1,1,1
+@0x0026 :           : beq     1,0,carry
+@0x0027 :           : beq     0,0,carrysetup
+label : equalmsb @0x0028
+@0x0028 : equalmsb  : beq     1,5,carry
+@0x0029 :           : beq     0,0,carrysetup
+label : carry @0x002a
+@0x002a : carry     : addi    4,4,1
+@0x002b :           : beq     0,0,carrysetup
+label : setup @0x002c
+@0x002c : setup     : lw      1,0,0
+@0x002d :           : add     5,5,5
+@0x002e :           : beq     0,0,loop
+label : carrysetup @0x002f
+@0x002f : carrysetup: lw      5,0,1
+@0x0030 :           : lw      2,0,2
+@0x0031 :           : beq     0,0,lshift
+label : end @0x0032
+@0x0032 : end       : halt
+
+Instructions :  50
+
+<tt><b><span style="color:green">Passed</span></b></tt> 0x0000x00ff = 0x00000000 ,	<tt>(instr=     432)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x00ffx0000 = 0x00000000 ,	<tt>(instr=     312)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x7fffx0007 = 0x00037ff9 ,	<tt>(instr=     383)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0xffffx0007 = 0x0006fff9 ,	<tt>(instr=     383)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0xa060x88dc = 0x55bcd280 ,	<tt>(instr=     437)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x0001x0001 = 0x00000001 ,	<tt>(instr=     315)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x0003x0003 = 0x00000009 ,	<tt>(instr=     334)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x0007x0007 = 0x00000031 ,	<tt>(instr=     353)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x000fx000f = 0x000000e1 ,	<tt>(instr=     372)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x001fx001f = 0x000003c1 ,	<tt>(instr=     391)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x003fx003f = 0x00000f81 ,	<tt>(instr=     410)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x007fx007f = 0x00003f01 ,	<tt>(instr=     429)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x00ffx00ff = 0x0000fe01 ,	<tt>(instr=     448)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x01ffx01ff = 0x0003fc01 ,	<tt>(instr=     469)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x03ffx03ff = 0x000ff801 ,	<tt>(instr=     490)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x07ffx07ff = 0x003ff001 ,	<tt>(instr=     511)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x0fffx0fff = 0x00ffe001 ,	<tt>(instr=     532)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x1fffx1fff = 0x03ffc001 ,	<tt>(instr=     553)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x3fffx3fff = 0x0fff8001 ,	<tt>(instr=     574)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0x7fffx7fff = 0x3fff0001 ,	<tt>(instr=     623)</tt><br> 
+<tt><b><span style="color:green">Passed</span></b></tt> 0xffffxffff = 0xfffe0001 ,	<tt>(instr=     617)</tt><br> <br>Tests : 21 <br>
+All  21 tests passed => <span style="color:green">100.0% passed</span><br>
+Argument size: <span style="color:green">16 bits</span><br>
+<img src="/img/mul_test_opti-3357539-2025-02-24_17-34" alt="Performance graph" width=500px>
+</code></pre>
+  
+    
+	
+	
+
+</body>
+</html>

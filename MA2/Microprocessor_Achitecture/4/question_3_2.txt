@@ -1,0 +1,11 @@
+//Question 3.2: Write a program to multiply the unsigned content of reg1 and reg2 and write the
+//result in reg3 and reg4, LSB in reg3.
+//Write the program using the Special IS[2] and using the MUL instruction.
+
+movi    1,0xffff        //Multiplicant A
+movi    2,0xffff        //Multiplier B
+mul     4,1,2
+add     5,4,0
+add     4,3,0
+add     3,5,0
+halt

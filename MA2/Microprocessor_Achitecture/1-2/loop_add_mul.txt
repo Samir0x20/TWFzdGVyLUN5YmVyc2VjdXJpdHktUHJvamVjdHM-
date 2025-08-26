@@ -1,0 +1,39 @@
+//Question 9:
+// Write a program which multiplies the (unsigned)
+// content of reg1 and reg2 and
+// writes the result into reg4(MSB), reg3.
+
+        //Initialize registers with unsigned 16-bit numbers
+        movi    1,0x7fff
+        movi    2,0x0007
+
+        beq     1,0,end
+        lui     5,0x8000        //R5: mask to extractt MSB
+
+boucle: beq     2,0,end
+        addi    2,2,-1
+
+        // Extract the MSB of previous result
+        nand    6,5,3
+        
+        // Extract the MSB of R1
+        nand    7,5,1
+
+        add     3,3,1
+        beq     6,7,equalsmb
+
+        // Extract the MSB of the next result
+        nand    6,5,3
+        nand    6,6,6
+
+        beq     6,0,carry  
+        beq     0,0,boucle
+
+equalsmb:   nand    6,6,6       
+        beq     6,5,carry
+        beq     0,0,boucle
+
+carry:  addi    4,4,1
+        beq     0,0,boucle
+
+end:    halt
